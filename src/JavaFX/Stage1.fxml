@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<VBox prefHeight="600.0" prefWidth="998.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="JavaFX.controller.Stage1Controller">
+    <children>
+        <MenuBar VBox.vgrow="NEVER">
+            <menus>
+                <Menu fx:id="menuItem" mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#getConectionNew" text="New" />
+                        <MenuItem fx:id="openTable" mnemonicParsing="false" text="Open…" />
+                        <Menu mnemonicParsing="false" text="Open Recent">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#getConectionOpen" text="persoane" />
+                     </items></Menu>
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Close" />
+                        <MenuItem mnemonicParsing="false" text="Save" />
+                        <MenuItem mnemonicParsing="false" text="Save As…" />
+                        <MenuItem mnemonicParsing="false" text="rev" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" onAction="#quitButton" text="Quit" />
+                    </items>
+                </Menu>
+                <Menu fx:id="createTable" mnemonicParsing="false" text="Edit">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Undo" />
+                        <MenuItem mnemonicParsing="false" text="Redo" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Cut" />
+                        <MenuItem mnemonicParsing="false" text="Copy" />
+                        <MenuItem mnemonicParsing="false" text="Paste" />
+                        <MenuItem mnemonicParsing="false" text="Delete" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Select All" />
+                        <MenuItem mnemonicParsing="false" text="Unselect All" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+            <children>
+                <Label layoutX="272.0" layoutY="14.0" text="Program de evidenta personal">
+                    <font>
+                        <Font name="Cambria" size="18.0" />
+                    </font>
+                </Label>
+            <Button layoutX="34.0" layoutY="498.0" mnemonicParsing="false" onAction="#goToStage2" text="Adauga pesoane" />
+            <TableView fx:id="tableViewBazaDate" layoutX="14.0" layoutY="53.0" prefHeight="200.0" prefWidth="912.0">
+              <columns>
+                <TableColumn fx:id="marcaTableView" prefWidth="75.0" text="Marca" />
+                <TableColumn fx:id="cnpTableView" prefWidth="117.0" text="CNP" />
+                  <TableColumn fx:id="npTableView" prefWidth="141.0" text="Nume sI Prenume" />
+                  <TableColumn fx:id="vechimeaTableView" prefWidth="54.0" text="Vechime" />
+                  <TableColumn fx:id="salBrutTableView" prefWidth="119.0" text="Salariu brut" />
+                  <TableColumn fx:id="cassTableView" minWidth="7.0" prefWidth="82.0" text="CASS" />
+                  <TableColumn fx:id="casTableView" prefWidth="92.0" text="CAS" />
+                  <TableColumn fx:id="impozitTableView" prefWidth="96.0" text="Impozit" />
+                  <TableColumn fx:id="salNetTableView" prefWidth="123.0" text="Salariu Net" />
+              </columns>
+            </TableView>
+            </children>
+        </AnchorPane>
+    </children>
+</VBox>
