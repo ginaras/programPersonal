@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<VBox prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="JavaFX.controller.SampleConectionController">
+<VBox prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="JavaFX.controller.SampleConectionController">
   <children>
     <MenuBar fx:id="meuBar" VBox.vgrow="NEVER">
       <menus>
@@ -25,12 +22,13 @@
     </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <children>
+
             <Label layoutX="14.0" layoutY="25.0" text="Program de evidenta personal" textFill="#e52525">
                <font>
                   <Font name="Cambria" size="60.0" />
                </font>
             </Label>
-            <Button fx:id="ConnectButton" layoutX="32.0" layoutY="150.0" mnemonicParsing="false" onAction="#getConection" onMouseClicked="#clik" text="Conectativa la baza de date">
+            <Button fx:id="ConnectButton" layoutX="32.0" layoutY="150.0" mnemonicParsing="false" onAction="#getConection" onMouseClicked="#clik" text="Conectati-va la baza de date">
                <font>
                   <Font size="55.0" />
                </font></Button>

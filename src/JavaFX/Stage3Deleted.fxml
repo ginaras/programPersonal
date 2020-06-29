@@ -7,7 +7,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<VBox prefHeight="600.0" prefWidth="998.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="JavaFX.controller.Stage1Controller">
+<VBox prefHeight="600.0" prefWidth="998.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="JavaFX.controller.Stage3DeletedController">
     <children>
         <MenuBar VBox.vgrow="NEVER">
             <menus>
@@ -52,7 +52,7 @@
         </MenuBar>
         <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
             <children>
-                <Label layoutX="272.0" layoutY="14.0" text="Program de evidenta personal">
+                <Label layoutX="733.0" layoutY="15.0" text="Program de evidenta personal">
                     <font>
                         <Font name="Cambria" size="18.0" />
                     </font>
@@ -61,16 +61,32 @@
             <TableView fx:id="tableViewBazaDate" layoutX="14.0" layoutY="53.0" prefHeight="200.0" prefWidth="912.0">
               <columns>
                 <TableColumn fx:id="marcaTableView" prefWidth="75.0" text="Marca" />
-                <TableColumn fx:id="cnpTableView" prefWidth="117.0" text="CNP" />
-                  <TableColumn fx:id="npTableView" prefWidth="141.0" text="Nume sI Prenume" />
-                  <TableColumn fx:id="vechimeaTableView" prefWidth="54.0" text="Vechime" />
-                  <TableColumn fx:id="salBrutTableView" prefWidth="119.0" text="Salariu brut" />
-                  <TableColumn fx:id="cassTableView" minWidth="7.0" prefWidth="82.0" text="CASS" />
-                  <TableColumn fx:id="casTableView" prefWidth="92.0" text="CAS" />
-                  <TableColumn fx:id="impozitTableView" prefWidth="96.0" text="Impozit" />
+                <TableColumn fx:id="cnpTableView" prefWidth="129.0" text="CNP" />
+                  <TableColumn fx:id="npTableView" prefWidth="165.0" text="Nume sI Prenume" />
+                  <TableColumn fx:id="vechimeaTableView" prefWidth="69.0" text="Vechime" />
+                  <TableColumn fx:id="salBrutTableView" prefWidth="110.0" text="Salariu brut" />
+                  <TableColumn fx:id="cassTableView" minWidth="7.0" text="CASS" />
+                  <TableColumn fx:id="casTableView" prefWidth="75.0" text="CAS" />
+                  <TableColumn fx:id="impozitTableView" prefWidth="73.0" style="fx-alignement: RIGHT;" text="Impozit" />
                   <TableColumn fx:id="salNetTableView" prefWidth="123.0" text="Salariu Net" />
               </columns>
             </TableView>
+            <Button fx:id="refresh" layoutX="34.0" layoutY="324.0" mnemonicParsing="false" onAction="#refreshButton" text="Refresh data" />
+            <Button fx:id="exportInFile" layoutX="154.0" layoutY="324.0" mnemonicParsing="false" onAction="#openFolder" text="Export in Fisier" />
+            <Button fx:id="backPerson" layoutX="307.0" layoutY="324.0" mnemonicParsing="false" onAction="#baackPersFromTable" text="Anuleaza stergerea" />
+            <Label fx:id="plecatLabel" layoutX="245.0" layoutY="274.0" prefHeight="21.0" prefWidth="147.0" text="Total plecati" />
+            <Button layoutX="783.0" layoutY="309.0" mnemonicParsing="false" onAction="#goToStage1" text="Personal existent" />
+            <Label layoutX="8.0" layoutY="15.0" text="Persoane plecate din unitate">
+               <font>
+                  <Font name="Cambria" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="deletedSalariati" layoutX="288.0" layoutY="16.0" text="plecate" />
+            <Label fx:id="totalSBLabel" layoutX="465.0" layoutY="274.0" prefHeight="21.0" prefWidth="92.0" text="salB" />
+            <Label fx:id="totalCASSLabel" layoutX="575.0" layoutY="274.0" prefHeight="21.0" prefWidth="74.0" text="cass" />
+            <Label fx:id="totalCASLabel" layoutX="649.0" layoutY="274.0" prefHeight="21.0" prefWidth="74.0" text="cas" />
+            <Label fx:id="totalImpLabel" layoutX="748.0" layoutY="274.0" text="impozit" />
+            <Label fx:id="totalSNLabel" layoutX="873.0" layoutY="274.0" text="salNet" />
             </children>
         </AnchorPane>
     </children>

@@ -26,9 +26,12 @@ public class SampleConectionController implements Initializable {
     @FXML    public Button ConnectButton;
     @FXML public Button goToStage1;
 
-    public Connection getConection () throws SQLException {
+    public Connection getConection () throws SQLException, ClassNotFoundException {
+
+         Class.forName("com.mysql.cj.jdbc.Driver"); //adaugata sa nu mai dea eroare la linia 14 din databaseConstants
         Connection connection = DriverManager.getConnection( DatabaseConstants.URL, DatabaseConstants.USER, DatabaseConstants.PASSWORD);
             createDtabase( connection );
+
         return null;
     }
   //create DB
@@ -36,6 +39,9 @@ public class SampleConectionController implements Initializable {
         try (Statement statement = connection.createStatement()) {
             statement.executeUpdate( CREATE_DATABASE );
             System.out.println("baza exista/este deja creata");
+
+
+
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("BD necreata--------------------------------------------------");
@@ -48,6 +54,7 @@ public class SampleConectionController implements Initializable {
         Stage window =  (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         window.setScene( tabeleViewScene );
         window.show();
+
     }
         public void clik(){
         this.goToStage1.setDisable( false );

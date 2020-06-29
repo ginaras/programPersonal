@@ -5,10 +5,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -20,7 +26,7 @@ import java.util.ResourceBundle;
 
 import static java.lang.Integer.parseInt;
 
-public class Stage2ShowController<salBrut> implements Initializable {
+public class Stage2IntroController<salBrut> implements Initializable {
 
     @FXML private TableView<DatabaseConstants> tableView;
     @FXML private TableColumn<DatabaseConstants, String> marca;
@@ -50,6 +56,7 @@ public class Stage2ShowController<salBrut> implements Initializable {
     @FXML private Button delPerson;
     @FXML private Button detailedButton;
 
+
     public void userClickOnTable(){
 //        this.detailedButton.setDisable( false );
         this.delPerson.setDisable( false );
@@ -69,11 +76,12 @@ public class Stage2ShowController<salBrut> implements Initializable {
         addToSQL( connection );
         labelShow ();
         textFieldCleard();
+        new LimitedTextFields();/////////////////////////////////////////////////////////////////
         return null;
     }
 //adaugare date in DB sql
       public void addToSQL ( Connection connection ){
-            String sql = "INSERT INTO personal (cnp, nume, dataNasterii,    dataAngajarii,vechimea, salariuBrut,salNet,   cas,cass,impozit) VALUES (?,?,?,  ?,?,?,?,  ?,?,?)";
+            String sql = "INSERT INTO personal (cnp, nume, dataNasterii,    dataAngajarii,vechimea, salariuBrut,salNet,   cas,cass,impozit,stare) VALUES (?,?,?,  ?,?,?,?,  ?,?,?,angajat)";
             try (PreparedStatement statement = connection.prepareStatement(sql) ){
         DatabaseConstants newPerson = new DatabaseConstants (
                 cnpField.getText(),
@@ -81,6 +89,8 @@ public class Stage2ShowController<salBrut> implements Initializable {
                 dataNasteriiField.getValue(),
                 dataAngajariiField.getValue(),
                 salariuBrutField.getText());
+
+
 
                 int vechimeaInt = Period.between( dataAngajariiField.getValue(),LocalDate.now() ).getYears();
 
@@ -102,10 +112,12 @@ public class Stage2ShowController<salBrut> implements Initializable {
                 String SALARIUNET = Integer.toString( salNetInt );
                 if (salariuBrutField != null); this.labelSN.setText(SALARIUNET);
 
+                String angajat = "angajat";
+
          tableView.getItems().addAll( newPerson );//pune pers in tabela..............................................................
                 //pune pers in BD
-         statement.executeUpdate("INSERT INTO PERSONAL(cnp,nume,dataNasterii,dataAngajarii, vechimea, salariuBrut,salNet, cas, cass, impozit) VALUES(' "+cnpField.getText()+"'," +
-                 "'"+numeField.getText()+"','"+dataNasteriiField.getValue()+"','"+dataAngajariiField.getValue()+"','"+vechimeaInt+"','"+salariuBrutField.getText()+"','"+salNetInt+"','"+casInt+"','"+cassInt+"','"+impozitInt+"')");
+         statement.executeUpdate("INSERT INTO PERSONAL(cnp,nume,dataNasterii,dataAngajarii, vechimea, salariuBrut,salNet, cas, cass, impozit,stare ) VALUES(' "+cnpField.getText()+"'," +
+                 "'"+numeField.getText()+"','"+dataNasteriiField.getValue()+"','"+dataAngajariiField.getValue()+"','"+vechimeaInt+"','"+salariuBrutField.getText()+"','"+salNetInt+"','"+casInt+"','"+cassInt+"','"+impozitInt+"','"+angajat+"')");
                   } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
@@ -136,7 +148,7 @@ public class Stage2ShowController<salBrut> implements Initializable {
           String SALARIUNET = Integer.toString( salNet );
           if (salariuBrutField != null); this.labelSN.setText(SALARIUNET);
 
-       int vechimeaInt = Period.between( LocalDate.now(),dataAngajariiField.getValue()).getYears() ;
+       int vechimeaInt = Period.between( dataAngajariiField.getValue(),LocalDate.now()).getYears() ;
        String vechimea = Integer.toString( vechimeaInt );
        if ((salariuBrutField !=null)); this.labelVechimea.setText( vechimea );
          // labelVechimea.setText( Integer.toString( Period.between(LocalDate.now(),dataAgajariiField.getValue() ).getYears() ));
@@ -144,8 +156,7 @@ public class Stage2ShowController<salBrut> implements Initializable {
     }
 //CLEAR TEXTfIELD:
     public void textFieldCleard()  {  cnpField.clear(); numeField.clear();  dataNasteriiField.getEditor().clear(); dataAngajariiField.getEditor().clear(); salariuBrutField.clear();   }// cnpField=STRING, dataNasteriiField= DataPicker
-//DatabaseConstants
-//    delete person
+
         public void deleteButton(){
         ObservableList<DatabaseConstants> selectedRows, allPeople;
         allPeople=tableView.getItems();
@@ -162,6 +173,22 @@ public class Stage2ShowController<salBrut> implements Initializable {
         //people.add( new DatabaseConstants( "0","Oz",LocalDate.of( 20, 12, 1995 ),"2500"));
         return people;
         }
+    public void goToStage1 ( ActionEvent actionEvent ) throws IOException {
+        Parent tableView = FXMLLoader.load( getClass().getClassLoader().getResource( "JavaFX/Stage1.fxml" ));
+        Scene tabeleViewScene = new Scene( tableView );
+        //This line gets the stage inforation
+        Stage window =  (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        window.setScene( tabeleViewScene );
+        window.show();
+    }
+    public void goToStage3Deleted (ActionEvent actionEvent) throws IOException {
+        Parent tableView3 =FXMLLoader.load( getClass().getClassLoader().getResource( "JavaFX/Stage3Deleted.fxml" ) );
+        Scene tableViewScene3 = new Scene( tableView3 );
+
+        Stage window3 = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        window3.setScene( tableViewScene3 );
+        window3.show();
+    }
 
         //QUIT
         public void quitButton( ActionEvent actionEvent ){  System.exit( 0 );   }
@@ -183,5 +210,8 @@ public class Stage2ShowController<salBrut> implements Initializable {
 //        this.detailedButton.setDisable( true );
         this.addPerson.setDisable( true );
         this.delPerson.setDisable( true );
+
+
         }
+
     }
