@@ -13,36 +13,12 @@
             <menus>
                 <Menu fx:id="menuItem" mnemonicParsing="false" text="File">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="New" />
-                        <MenuItem mnemonicParsing="false" text="Open…" />
-                        <Menu mnemonicParsing="false" text="Open Recent" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Close" />
-                        <MenuItem mnemonicParsing="false" text="Save" />
-                        <MenuItem mnemonicParsing="false" text="Save As…" />
-                        <MenuItem mnemonicParsing="false" text="rev" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
                         <MenuItem mnemonicParsing="false" onAction="#quitButton" text="Quit" />
-                    </items>
-                </Menu>
-                <Menu fx:id="createTable" mnemonicParsing="false" text="Edit">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="Undo" />
-                        <MenuItem mnemonicParsing="false" text="Redo" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Cut" />
-                        <MenuItem mnemonicParsing="false" text="Copy" />
-                        <MenuItem mnemonicParsing="false" text="Paste" />
-                        <MenuItem mnemonicParsing="false" text="Delete" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Select All" />
-                        <MenuItem mnemonicParsing="false" text="Unselect All" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
+                        <MenuItem fx:id="Despre" mnemonicParsing="false" onAction="#despre" text="Despre" />
                     </items>
                 </Menu>
             </menus>
@@ -85,13 +61,14 @@
             <Label fx:id="labelSN" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="138.0" layoutY="404.0" textAlignment="RIGHT" />
             <Label fx:id="labelVechimea" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="134.0" layoutY="425.0" prefHeight="21.0" prefWidth="51.0" textAlignment="RIGHT" />
             <Label layoutX="37.0" layoutY="425.0" text="Vechimea" />
-            <Button layoutX="835.0" layoutY="497.0" mnemonicParsing="false" onAction="#goToStage1" text="Personal existent" />
-            <Button layoutX="834.0" layoutY="446.0" mnemonicParsing="false" onAction="#goToStage3Deleted" text="Personal plecat" />
+            <Button layoutX="619.0" layoutY="347.0" mnemonicParsing="false" onAction="#goToStage1" text="Personal existent" />
+            <Button layoutX="808.0" layoutY="347.0" mnemonicParsing="false" onAction="#goToStage3Deleted" text="Personal plecat" />
             <Label layoutX="30.0" layoutY="31.0" text="Program de evidenta personal">
                <font>
                   <Font name="Cambria" size="18.0" />
                </font>
             </Label>
+            <Label layoutX="860.0" layoutY="528.0" text="By Sorin Ginara" />
          </children>
       </AnchorPane>
     </children>

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="JavaFX.controller.SampleConectionController">
+<VBox prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="JavaFX.controller.SampleConectionController">
   <children>
     <MenuBar fx:id="meuBar" VBox.vgrow="NEVER">
       <menus>
@@ -12,10 +13,9 @@
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#quitButton" text="Quit" />
                </items></Menu>
-        <Menu mnemonicParsing="false" text="Edit" />
-        <Menu mnemonicParsing="false" text="Help">
+        <Menu mnemonicParsing="false" text="Ajutor">
           <items>
-            <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
+            <MenuItem fx:id="despre" mnemonicParsing="false" onAction="#despre" text="Despre" />
           </items>
         </Menu>
       </menus>
@@ -23,19 +23,34 @@
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <children>
 
-            <Label layoutX="14.0" layoutY="25.0" text="Program de evidenta personal" textFill="#e52525">
+            <Label layoutX="14.0" layoutY="8.0" text="Program de evidenta personal" textFill="#e52525">
                <font>
                   <Font name="Cambria" size="60.0" />
                </font>
             </Label>
-            <Button fx:id="ConnectButton" layoutX="32.0" layoutY="150.0" mnemonicParsing="false" onAction="#getConection" onMouseClicked="#clik" text="Conectati-va la baza de date">
+            <Button fx:id="ConnectButton" layoutX="23.0" layoutY="209.0" mnemonicParsing="false" onAction="#getConection" onMouseClicked="#click" text="Conectati-va la baza de date">
                <font>
-                  <Font size="55.0" />
+                  <Font size="13.0" />
                </font></Button>
-            <Button fx:id="goToStage1" layoutX="264.0" layoutY="366.0" mnemonicParsing="false" onAction="#goToStage1" text="START">
+            <Button fx:id="goToStage1" layoutX="66.0" layoutY="284.0" mnemonicParsing="false" onAction="#goToStage1" onMouseClicked="#click" text="START">
                <font>
-                  <Font name="Calibri Bold Italic" size="72.0" />
+                  <Font name="Calibri Bold Italic" size="14.0" />
                </font></Button>
+            <Label layoutX="106.0" layoutY="88.0" text="Va rugam sa alegeti una din variantele de utilizare de mai jos:">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+            <Label layoutX="40.0" layoutY="149.0" text="1 Rulare pe statia proprie" />
+            <Label layoutX="332.0" layoutY="149.0" text="2 Rulare In cloud" />
+            <Label layoutX="605.0" layoutY="149.0" text="3. Varianta demo" />
+            <Button fx:id="getConnectionWeb" layoutX="345.0" layoutY="208.0" mnemonicParsing="false" onAction="#getConnectionWeb" text="Conectare la cloud" />
+            <Button layoutX="629.0" layoutY="208.0" mnemonicParsing="false" onAction="#goToStage1Demo" text="Demo" />
+            <Label layoutX="667.0" layoutY="519.0" text="By Sorin Ginara" />
+            <TextArea editable="false" layoutX="567.0" layoutY="319.0" prefHeight="200.0" prefWidth="200.0" promptText="In aceasta sectiune nu avem daze de date, ci puteti vizualiza unele dintre obtiunile programului" text="In aceasta sectiune nu avem baze de date, nu este nevoie de MySQL. Se pot vizualiza unele dintre optiunile programului." wrapText="true" />
+            <TextArea layoutX="317.0" layoutY="319.0" prefHeight="200.0" prefWidth="200.0" text="Aceasta sectiune de program duce bazele de date in cloud, astfel incat dumneavoastra sa nu aveti grija pastrarii acestora. Datele vor fi stocate pe serverele noaste care fac back-up zilnic, astfel incat sa nu se piarda nimic" wrapText="true" />
+            <TextArea layoutX="40.0" layoutY="319.0" prefHeight="200.0" prefWidth="200.0" text="Aceasta varianta ofera utilizatorului posibilitatea sa foloseasca o baza de date locala. Pentru aceasta aveti nevoie de instalarea MySQL. Apasati butonul de conectare si introduceti datele de conectare MySQL" wrapText="true" />
+            <Button fx:id="StartWebServer" layoutX="356.0" layoutY="282.0" mnemonicParsing="false" onAction="#goToStage1" text="StartWebServer" />
       </children>
     </AnchorPane>
   </children>

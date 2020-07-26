@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox prefHeight="604.0" prefWidth="1001.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="JavaFX.controller.Stage2IntroController">
+<VBox prefHeight="604.0" prefWidth="1001.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="JavaFX.controller.Stage2IntroDemoController">
     <children>
         <MenuBar VBox.vgrow="NEVER">
             <menus>
@@ -18,7 +18,7 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
                     <items>
-                        <MenuItem fx:id="Despre" mnemonicParsing="false" onAction="#despre" text="Despre" />
+                        <MenuItem mnemonicParsing="false" onAction="#despre" text="Despre" />
                     </items>
                 </Menu>
             </menus>
@@ -61,14 +61,13 @@
             <Label fx:id="labelSN" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="138.0" layoutY="404.0" textAlignment="RIGHT" />
             <Label fx:id="labelVechimea" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="134.0" layoutY="425.0" prefHeight="21.0" prefWidth="51.0" textAlignment="RIGHT" />
             <Label layoutX="37.0" layoutY="425.0" text="Vechimea" />
-            <Button layoutX="619.0" layoutY="347.0" mnemonicParsing="false" onAction="#goToStage1" text="Personal existent" />
-            <Button layoutX="808.0" layoutY="347.0" mnemonicParsing="false" onAction="#goToStage3Deleted" text="Personal plecat" />
+            <Button layoutX="835.0" layoutY="497.0" mnemonicParsing="false" onAction="#goToStage1" text="Personal existent" />
+            <Button layoutX="834.0" layoutY="446.0" mnemonicParsing="false" onAction="#goToStage3Deleted" text="Personal plecat" />
             <Label layoutX="30.0" layoutY="31.0" text="Program de evidenta personal">
                <font>
                   <Font name="Cambria" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="860.0" layoutY="528.0" text="By Sorin Ginara" />
          </children>
       </AnchorPane>
     </children>

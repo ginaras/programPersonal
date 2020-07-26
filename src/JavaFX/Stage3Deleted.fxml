@@ -13,39 +13,12 @@
             <menus>
                 <Menu fx:id="menuItem" mnemonicParsing="false" text="File">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#getConectionNew" text="New" />
-                        <MenuItem fx:id="openTable" mnemonicParsing="false" text="Open…" />
-                        <Menu mnemonicParsing="false" text="Open Recent">
-                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#getConectionOpen" text="persoane" />
-                     </items></Menu>
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Close" />
-                        <MenuItem mnemonicParsing="false" text="Save" />
-                        <MenuItem mnemonicParsing="false" text="Save As…" />
-                        <MenuItem mnemonicParsing="false" text="rev" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
                         <MenuItem mnemonicParsing="false" onAction="#quitButton" text="Quit" />
-                    </items>
-                </Menu>
-                <Menu fx:id="createTable" mnemonicParsing="false" text="Edit">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="Undo" />
-                        <MenuItem mnemonicParsing="false" text="Redo" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Cut" />
-                        <MenuItem mnemonicParsing="false" text="Copy" />
-                        <MenuItem mnemonicParsing="false" text="Paste" />
-                        <MenuItem mnemonicParsing="false" text="Delete" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Select All" />
-                        <MenuItem mnemonicParsing="false" text="Unselect All" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
+                        <MenuItem fx:id="despre" mnemonicParsing="false" onAction="#despre" text="Despre" />
                     </items>
                 </Menu>
             </menus>
@@ -73,7 +46,7 @@
             </TableView>
             <Button fx:id="refresh" layoutX="34.0" layoutY="324.0" mnemonicParsing="false" onAction="#refreshButton" text="Refresh data" />
             <Button fx:id="exportInFile" layoutX="154.0" layoutY="324.0" mnemonicParsing="false" onAction="#openFolder" text="Export in Fisier" />
-            <Button fx:id="backPerson" layoutX="307.0" layoutY="324.0" mnemonicParsing="false" onAction="#baackPersFromTable" text="Anuleaza stergerea" />
+            <Button fx:id="backPerson" layoutX="307.0" layoutY="324.0" mnemonicParsing="false" text="Anuleaza stergerea" />
             <Label fx:id="plecatLabel" layoutX="245.0" layoutY="274.0" prefHeight="21.0" prefWidth="147.0" text="Total plecati" />
             <Button layoutX="783.0" layoutY="309.0" mnemonicParsing="false" onAction="#goToStage1" text="Personal existent" />
             <Label layoutX="8.0" layoutY="15.0" text="Persoane plecate din unitate">
@@ -81,12 +54,13 @@
                   <Font name="Cambria" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="deletedSalariati" layoutX="288.0" layoutY="16.0" text="plecate" />
-            <Label fx:id="totalSBLabel" layoutX="465.0" layoutY="274.0" prefHeight="21.0" prefWidth="92.0" text="salB" />
-            <Label fx:id="totalCASSLabel" layoutX="575.0" layoutY="274.0" prefHeight="21.0" prefWidth="74.0" text="cass" />
-            <Label fx:id="totalCASLabel" layoutX="649.0" layoutY="274.0" prefHeight="21.0" prefWidth="74.0" text="cas" />
-            <Label fx:id="totalImpLabel" layoutX="748.0" layoutY="274.0" text="impozit" />
-            <Label fx:id="totalSNLabel" layoutX="873.0" layoutY="274.0" text="salNet" />
+            <Label fx:id="deletedSalariati" layoutX="288.0" layoutY="16.0" text="2" />
+            <Label fx:id="totalSBLabel" layoutX="465.0" layoutY="274.0" prefHeight="21.0" prefWidth="92.0" text="SalBrut" />
+            <Label fx:id="totalCASSLabel" layoutX="575.0" layoutY="274.0" prefHeight="21.0" prefWidth="74.0" text="Cass" />
+            <Label fx:id="totalCASLabel" layoutX="649.0" layoutY="274.0" prefHeight="21.0" prefWidth="74.0" text="CAS" />
+            <Label fx:id="totalImpLabel" layoutX="748.0" layoutY="274.0" text="imp" />
+            <Label fx:id="totalSNLabel" layoutX="873.0" layoutY="274.0" text="net" />
+            <Label layoutX="859.0" layoutY="514.0" text="By Sorin Ginara" />
             </children>
         </AnchorPane>
     </children>

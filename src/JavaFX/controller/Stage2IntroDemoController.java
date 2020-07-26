@@ -17,16 +17,16 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 import static java.lang.Integer.parseInt;
+import static sun.util.calendar.BaseCalendar.MAY;
 
-public class Stage2IntroController<salBrut> implements Initializable {
+public class Stage2IntroDemoController<salBrut> implements Initializable {
 
     @FXML private TableView<DatabaseConstants> tableView;
     @FXML private TableColumn<DatabaseConstants, String> marca;
@@ -71,18 +71,16 @@ public class Stage2IntroController<salBrut> implements Initializable {
 
 //Conectare si adaugare in BD
     public Connection getConectionPersAdd () throws SQLException, ClassNotFoundException {
-        Connection connection = DriverManager.getConnection( DatabaseConstants.URL, AccesSQL.USER, AccesSQL.PASSWORD);
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        addToSQL( connection );
+//        Connection connection = DriverManager.getConnection( DatabaseConstants.URL, DatabaseConstants.USER, DatabaseConstants.PASSWORD);
+//        Class.forName("com.mysql.cj.jdbc.Driver");
+        addToTable(  );
         labelShow ();
         textFieldCleard();
         new LimitedTextFields();/////////////////////////////////////////////////////////////////
         return null;
     }
 //adaugare date in DB sql
-      public void addToSQL ( Connection connection ){
-            String sql = "INSERT INTO personal (cnp, nume, dataNasterii,    dataAngajarii,vechimea, salariuBrut,salNet,   cas,cass,impozit,stare) VALUES (?,?,?,  ?,?,?,?,  ?,?,?,angajat)";
-            try (PreparedStatement statement = connection.prepareStatement(sql) ){
+      public void addToTable ( ){
         DatabaseConstants newPerson = new DatabaseConstants (
                 cnpField.getText(),
                 numeField.getText(),
@@ -112,13 +110,7 @@ public class Stage2IntroController<salBrut> implements Initializable {
 
                 String angajat = "angajat";
 
-         tableView.getItems().addAll( newPerson );//pune pers in tabela..............................................................
-                //pune pers in BD
-         statement.executeUpdate("INSERT INTO PERSONAL(cnp,nume,dataNasterii,dataAngajarii, vechimea, salariuBrut,salNet, cas, cass, impozit,stare ) VALUES(' "+cnpField.getText()+"'," +
-                 "'"+numeField.getText()+"','"+dataNasteriiField.getValue()+"','"+dataAngajariiField.getValue()+"','"+vechimeaInt+"','"+salariuBrutField.getText()+"','"+salNetInt+"','"+casInt+"','"+cassInt+"','"+impozitInt+"','"+angajat+"')");
-                  } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
+         tableView.getItems().addAll( newPerson );//pune pers in tabela.............................................................
       }
 //preluarea datelor noi si punerea  in label-urile de sub tabel
       public void labelShow (){
@@ -163,12 +155,16 @@ public class Stage2IntroController<salBrut> implements Initializable {
             allPeople.remove( person );
             }
         }
-//load data in table view
+
+     //load data in table view
         public ObservableList<DatabaseConstants> getPeople (){       ObservableList <DatabaseConstants> people = FXCollections.observableArrayList() ;
+//         people.add( new DatabaseConstants( "  ","  ", LocalDate.of(   1, 0,0 ),  LocalDate.of( 0,0,0 ),"  " ));
+        people.add( new DatabaseConstants( "123565","Titi Popescu", LocalDate.of( 1975, MAY,3 ),LocalDate.of( 2015, MAY,31 ),  "2500" ));
+        people.add( new DatabaseConstants( "1778569569980","Controloru Vasile",LocalDate.of( 1990, MAY,31 ),LocalDate.of( 2015, MAY,10 ),"3200"));
         return people;
         }
     public void goToStage1 ( ActionEvent actionEvent ) throws IOException {
-        Parent tableView = FXMLLoader.load( getClass().getClassLoader().getResource( "JavaFX/Stage1.fxml" ));
+        Parent tableView = FXMLLoader.load( getClass().getClassLoader().getResource( "JavaFX/Stage1Demo.fxml" ));
         Scene tabeleViewScene = new Scene( tableView );
         //This line gets the stage inforation
         Stage window =  (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
@@ -176,7 +172,7 @@ public class Stage2IntroController<salBrut> implements Initializable {
         window.show();
     }
     public void goToStage3Deleted (ActionEvent actionEvent) throws IOException {
-        Parent tableView3 =FXMLLoader.load( getClass().getClassLoader().getResource( "JavaFX/Stage3Deleted.fxml" ) );
+        Parent tableView3 =FXMLLoader.load( Objects.requireNonNull( getClass().getClassLoader().getResource( "JavaFX/Stage3DeletedDemo.fxml" ) ) );
         Scene tableViewScene3 = new Scene( tableView3 );
 
         Stage window3 = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
@@ -190,7 +186,8 @@ public class Stage2IntroController<salBrut> implements Initializable {
 
 
 
-        @Override
+
+    @Override
         public void initialize ( URL location, ResourceBundle resources ) {
         //set up the column & populate the list
         //marca.setCellValueFactory( new PropertyValueFactory<>( "marca" ) );
@@ -201,8 +198,10 @@ public class Stage2IntroController<salBrut> implements Initializable {
         salariuBrut.setCellValueFactory( new PropertyValueFactory<>( "salariuBrut" ) );
         tableView.setItems( getPeople() );
 
+
+
+
         //desable a button
-//        this.detailedButton.setDisable( true );
         this.addPerson.setDisable( true );
         this.delPerson.setDisable( true );
 

@@ -62,13 +62,13 @@ public class Stage1Controller<personData, personDataApp> implements Initializabl
 
     public ObservableList<DatabaseConstants> personalData;//declarare pt listview
     //DatabaseConstants db =DatabaseConstants.getInstantce();
-    Connection connection = DriverManager.getConnection( DatabaseConstants.URL, DatabaseConstants.USER, DatabaseConstants.PASSWORD );
+    Connection connection = DriverManager.getConnection( DatabaseConstants.URL, AccesSQL.USER, AccesSQL.PASSWORD );
     Statement stm = connection.createStatement();
     ResultSet rs1 = stm.executeQuery( "SELECT * FROM personal WHERE stare = 'angajat' " );
 
    //create Table+
     public Connection getConectionNew () throws SQLException {
-        Connection connection = DriverManager.getConnection( DatabaseConstants.URL, DatabaseConstants.USER, DatabaseConstants.PASSWORD );
+        Connection connection = DriverManager.getConnection( DatabaseConstants.URL, AccesSQL.USER, AccesSQL.PASSWORD );
         Statement stm = connection.createStatement();
         ResultSet rs = stm.executeQuery( "SELECT * FROM personal" );
         createTable( connection );
@@ -86,7 +86,7 @@ public class Stage1Controller<personData, personDataApp> implements Initializabl
 
 
     public Connection getConectionOpen () throws SQLException {
-        Connection connection = DriverManager.getConnection( DatabaseConstants.URL, DatabaseConstants.USER, DatabaseConstants.PASSWORD );
+        Connection connection = DriverManager.getConnection( DatabaseConstants.URL, AccesSQL.USER, AccesSQL.PASSWORD );
         openTable1( connection );
         return null;
     }
@@ -130,7 +130,9 @@ public class Stage1Controller<personData, personDataApp> implements Initializabl
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
+    public void despre(){Despre.Text();}
 
 
 
@@ -228,7 +230,7 @@ public class Stage1Controller<personData, personDataApp> implements Initializabl
 
     public Stage1Controller () throws SQLException, IOException {
         try {
-            Connection connection = DriverManager.getConnection( DatabaseConstants.URL, DatabaseConstants.USER, DatabaseConstants.PASSWORD );
+            Connection connection = DriverManager.getConnection( DatabaseConstants.URL, AccesSQL.USER, AccesSQL.PASSWORD );
             Statement st = connection.createStatement();
             ResultSet rs = st.executeQuery( "SELECT * FROM personal WHERE stare = 'angajat'" );
 
@@ -244,10 +246,11 @@ public class Stage1Controller<personData, personDataApp> implements Initializabl
             LocalDateTime date = LocalDateTime.now();
             String nume = date.toString();
             String replaceNume= nume.replace( ":","-" );
+            String replaceNume2 = replaceNume.replace("T"," ora ");
             System.out.println(replaceNume );
 
 
-            BufferedWriter writer0 = new BufferedWriter( new FileWriter( "c:\\GynTaSoft\\Salarii\\TabelPersonalActiv-" + replaceNume+ ".csv", false ) );
+            BufferedWriter writer0 = new BufferedWriter( new FileWriter( "c:\\GynTaSoft\\Salarii\\TabelPersonalActiv-" + replaceNume2+ ".csv", false ) );
             writer0.append( "marca, cnp ,nume si prenume, Salariu brut, Vechimea, CASS, CAS, Impozit, Salariu net, data nasterii, data angajarii" );
             writer0.close();
 //Parcurgerea BD si extragerea datelor iterate through the java resultset
@@ -270,7 +273,7 @@ public class Stage1Controller<personData, personDataApp> implements Initializabl
 
 //print - adaugarea datelor in fisier
                 String datele = (Integer) marcaTableViewPrint + "," + (String) cnpTableView + "," + (String) npTableView + "," + (Integer) vechimeaTableView + "," + (String) salBrutTableView + "," + (Integer) cassTableView + "," + (Integer) casTableView + "," + (Integer) impozitTableView + "," + (Integer) salNetTableView+","+dataNasterii+","+dataAngajarii;
-                BufferedWriter writer = new BufferedWriter( new FileWriter( "c:\\GynTaSoft\\Salarii\\TabelPersonalActiv-" + replaceNume + ".csv", true ) );
+                BufferedWriter writer = new BufferedWriter( new FileWriter( "c:\\GynTaSoft\\Salarii\\TabelPersonalActiv-" + replaceNume2 + ".csv", true ) );
                 writer.append( " \n" );
                 writer.append( datele );
                 writer.close();
@@ -280,6 +283,8 @@ public class Stage1Controller<personData, personDataApp> implements Initializabl
             ioException.printStackTrace();
         }
     }
+
+    public void despre1(){Despre.Text();}
 
     public void deletePersonTableAndSQL (ActionEvent actionEvent){
         deletePersFromTable();

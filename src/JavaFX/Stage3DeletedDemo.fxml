@@ -7,7 +7,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<VBox prefHeight="600.0" prefWidth="998.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="JavaFX.controller.Stage1Controller">
+<VBox prefHeight="600.0" prefWidth="998.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="JavaFX.controller.Stage3DeletedDemoController">
     <children>
         <MenuBar VBox.vgrow="NEVER">
             <menus>
@@ -18,14 +18,14 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
                     <items>
-                        <MenuItem fx:id="despre" mnemonicParsing="false" onAction="#despre1" text="Despre" />
+                        <MenuItem mnemonicParsing="false" onAction="#despre" text="Despre" />
                     </items>
                 </Menu>
             </menus>
         </MenuBar>
         <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
             <children>
-                <Label layoutX="752.0" layoutY="15.0" text="Program de evidenta personal">
+                <Label layoutX="733.0" layoutY="15.0" text="Program de evidenta personal">
                     <font>
                         <Font name="Cambria" size="18.0" />
                     </font>
@@ -44,24 +44,23 @@
                   <TableColumn fx:id="salNetTableView" prefWidth="123.0" text="Salariu Net" />
               </columns>
             </TableView>
-            <Button fx:id="refresh" layoutX="34.0" layoutY="328.0" mnemonicParsing="false" onAction="#refreshButton" text="Refresh data" />
-            <Button fx:id="exportInFile" layoutX="158.0" layoutY="328.0" mnemonicParsing="false" onAction="#openFolder" text="Export in Fisier" />
-            <Button fx:id="deletePerson" layoutX="304.0" layoutY="328.0" mnemonicParsing="false" onAction="#deletePersonTableAndSQL" text="Sterge persoana" />
-            <Label fx:id="plecatLabel" layoutX="489.0" layoutY="333.0" prefHeight="21.0" prefWidth="310.0" />
-            <Button layoutX="802.0" layoutY="328.0" mnemonicParsing="false" onAction="#goToStage3Deleted" text="Persoane plecate" />
-            <Label layoutX="196.0" layoutY="15.0" text="Personal existent">
+            <Button fx:id="refresh" layoutX="34.0" layoutY="324.0" mnemonicParsing="false" text="Refresh data" />
+            <Button fx:id="exportInFile" layoutX="154.0" layoutY="324.0" mnemonicParsing="false" onAction="#openFolder" text="Export in Fisier" />
+            <Button fx:id="backPerson" layoutX="307.0" layoutY="324.0" mnemonicParsing="false" text="Anuleaza stergerea" />
+            <Label fx:id="plecatLabel" layoutX="245.0" layoutY="274.0" prefHeight="21.0" prefWidth="147.0" text="Total plecati" />
+            <Button layoutX="783.0" layoutY="309.0" mnemonicParsing="false" onAction="#goToStage1" text="Personal existent" />
+            <Label layoutX="8.0" layoutY="15.0" text="Persoane plecate din unitate">
                <font>
                   <Font name="Cambria" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="existNr" layoutX="352.0" layoutY="16.0" prefHeight="21.0" prefWidth="250.0" text="persPlecate" />
-            <Label fx:id="totalSBLabel" layoutX="447.0" layoutY="264.0" prefHeight="21.0" prefWidth="117.0" text="SB" />
-            <Label fx:id="totalCASSLabel" layoutX="578.0" layoutY="264.0" prefHeight="21.0" prefWidth="61.0" text="CASS" />
-            <Label fx:id="totalCASLabel" layoutX="639.0" layoutY="264.0" prefHeight="21.0" prefWidth="67.0" text="cas" />
-            <Label fx:id="totalImpLabel" layoutX="735.0" layoutY="264.0" prefHeight="21.0" prefWidth="61.0" text="imp" />
-            <Label fx:id="totalSNLabel" layoutX="802.0" layoutY="264.0" prefHeight="21.0" prefWidth="103.0" text="SNet" />
-            <Label layoutX="336.0" layoutY="264.0" text="Total" />
-            <Label layoutX="888.0" layoutY="529.0" text="By Sorin Ginara" />
+            <Label fx:id="deletedSalariati" layoutX="288.0" layoutY="16.0" text="2" />
+            <Label fx:id="totalSBLabel" layoutX="465.0" layoutY="274.0" prefHeight="21.0" prefWidth="92.0" text="20000" />
+            <Label fx:id="totalCASSLabel" layoutX="575.0" layoutY="274.0" prefHeight="21.0" prefWidth="74.0" text="5000" />
+            <Label fx:id="totalCASLabel" layoutX="649.0" layoutY="274.0" prefHeight="21.0" prefWidth="74.0" text="2000" />
+            <Label fx:id="totalImpLabel" layoutX="748.0" layoutY="274.0" text="1300" />
+            <Label fx:id="totalSNLabel" layoutX="873.0" layoutY="274.0" text="11700" />
+            <Label layoutX="859.0" layoutY="529.0" text="By Sorin Ginara" />
             </children>
         </AnchorPane>
     </children>

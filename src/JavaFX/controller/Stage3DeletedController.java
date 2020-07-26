@@ -58,7 +58,7 @@ public class Stage3DeletedController<personData, personDataApp> implements Initi
 
     public ObservableList<DatabaseConstants> personalData;//declarare pt listview
     //DatabaseConstants db =DatabaseConstants.getInstantce();
-    Connection connection = DriverManager.getConnection( DatabaseConstants.URL, DatabaseConstants.USER, DatabaseConstants.PASSWORD );
+    Connection connection = DriverManager.getConnection( DatabaseConstants.URL, AccesSQL.USER, AccesSQL.PASSWORD );
     Statement stm = connection.createStatement();
     ResultSet rs1 = stm.executeQuery( "SELECT * FROM personal WHERE stare = 'plecat' " );
 
@@ -70,7 +70,7 @@ public class Stage3DeletedController<personData, personDataApp> implements Initi
 
     //create Table+
     public Connection getConectionNew () throws SQLException {
-        Connection connection = DriverManager.getConnection( DatabaseConstants.URL, DatabaseConstants.USER, DatabaseConstants.PASSWORD );
+        Connection connection = DriverManager.getConnection( DatabaseConstants.URL, AccesSQL.USER, AccesSQL.PASSWORD );
         Statement stm = connection.createStatement();
         ResultSet rs = stm.executeQuery( "SELECT * FROM personal" );
         createTable( connection );
@@ -88,7 +88,7 @@ public class Stage3DeletedController<personData, personDataApp> implements Initi
 
 
     public Connection getConectionOpen () throws SQLException {
-        Connection connection = DriverManager.getConnection( DatabaseConstants.URL, DatabaseConstants.USER, DatabaseConstants.PASSWORD );
+        Connection connection = DriverManager.getConnection( DatabaseConstants.URL, AccesSQL.USER, AccesSQL.PASSWORD );
         openTable1( connection );
         return null;
     }
@@ -152,6 +152,7 @@ public class Stage3DeletedController<personData, personDataApp> implements Initi
     public void quitButton ( ActionEvent actionEvent ) {
         System.exit( 0 );
     }
+    public void despre(){Despre.Text();}
 
     @Override
     public void initialize ( URL location, ResourceBundle resources ) {
@@ -253,14 +254,15 @@ public class Stage3DeletedController<personData, personDataApp> implements Initi
 
     public Stage3DeletedController () throws SQLException, IOException {
         try {
-            Connection connection = DriverManager.getConnection( DatabaseConstants.URL, DatabaseConstants.USER, DatabaseConstants.PASSWORD );
+            Connection connection = DriverManager.getConnection( DatabaseConstants.URL, AccesSQL.USER, AccesSQL.PASSWORD );
             Statement st = connection.createStatement();
             ResultSet rs = st.executeQuery( "SELECT * FROM personal WHERE stare = 'plecat'" );
 //Print - Crearea si prima linie a fisierilui de raport
             LocalDateTime date = LocalDateTime.now();
             String nume = date.toString();
             String replaceNume= nume.replace( ":","-" );
-            BufferedWriter writer0 = new BufferedWriter( new FileWriter( "c:\\GynTaSoft\\Salarii\\TabelPersoanePlecateDinFirma-" + replaceNume + ".csv", false ) );
+            String replaceNume2 = replaceNume.replace("T"," ora ");
+            BufferedWriter writer0 = new BufferedWriter( new FileWriter( "c:\\GynTaSoft\\Salarii\\TabelPersoanePlecateDinFirma-" + replaceNume2 + ".csv", false ) );
             writer0.append( "marca, cnp ,nume si prenume, Vechimea, Salariu brut, CASS, CAS, Impozit, Salariu net" );
             writer0.close();
 //Parcurgerea BD si extragerea datelor iterate through the java resultset
@@ -281,7 +283,7 @@ public class Stage3DeletedController<personData, personDataApp> implements Initi
 
 //print - adaugarea datelor in fisier
                 String datele = (Integer) marcaTableViewPrint + "," + (String) cnpTableView + "," + (String) npTableView + "," + (Integer) vechimeaTableView + "," + (String) salBrutTableView + "," + (Integer) cassTableView + "," + (Integer) casTableView + "," + (Integer) impozitTableView + "," + (Integer) salNetTableView;
-                BufferedWriter writer = new BufferedWriter( new FileWriter( "c:\\GynTaSoft\\Salarii\\TabelPersoanePlecateDinFirma-" + replaceNume + ".csv", true ) );
+                BufferedWriter writer = new BufferedWriter( new FileWriter( "c:\\GynTaSoft\\Salarii\\TabelPersoanePlecateDinFirma-" + replaceNume2 + ".csv", true ) );
                 writer.append( " \n" );
                 writer.append( datele );
                 writer.close();

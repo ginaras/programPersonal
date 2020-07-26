@@ -1,24 +1,15 @@
 package conectivity;
 
+import JavaFX.controller.AccesSQL;
 import javaPac.DatabaseConstants;
-import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
 
 import java.awt.*;
 import java.math.BigDecimal;
-import java.net.URL;
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
-
-import static javaPac.MainJDBC.*;
-import static jdk.nashorn.internal.objects.Global.print;
-import static javaPac.DatabaseConstants.*;
-import static jdk.nashorn.internal.objects.Global.setDate;
 
 public class ToateButoanele implements Initializable {
 
@@ -31,7 +22,7 @@ public class ToateButoanele implements Initializable {
     public Connection getConection () {
 
 
-        try (Connection connection = DriverManager.getConnection( DatabaseConstants.URL, DatabaseConstants.USER, DatabaseConstants.PASSWORD )) {
+        try (Connection connection = DriverManager.getConnection( DatabaseConstants.URL, AccesSQL.USER, AccesSQL.PASSWORD )) {
             // vreau sa inregistrez Driverul
 
             createTable( connection );
