@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.*;
 
 public class AccesSQL implements ActionListener {
 
@@ -62,18 +61,20 @@ public class AccesSQL implements ActionListener {
         sqlLogButton.setBounds( 140, 170, 105, 25 );
         sqlLogButton.addActionListener( new AccesSQL() );
         //sqlLogButton.addActionListener( new SampleConectionController().clik() );
+        System.out.println(USER + PASSWORD);
         panel.add( sqlLogButton );
 
         clik = new Label( "Daca ai pus datele corecte poti apasa START" );
         clik.setBounds( 40, 205, 340, 30 );
 
-        checkbox = new Checkbox();
-        checkbox.setBounds( 125, 140, 20, 20 );
-        panel.add( checkbox );
-
-        checkExplain = new Label( "Retine datele" );
-        checkExplain.setBounds( 145, 137, 105, 25 );
-        panel.add( checkExplain );
+//
+//        checkbox = new Checkbox();
+//        checkbox.setBounds( 125, 140, 20, 20 );
+//        panel.add( checkbox );
+//
+//        checkExplain = new Label( "Retine datele" );
+//        checkExplain.setBounds( 145, 137, 105, 25 );
+//        panel.add( checkExplain );
 
         frame.setVisible( true );
     }
@@ -85,38 +86,42 @@ public class AccesSQL implements ActionListener {
 
     @Override
     public void actionPerformed ( ActionEvent e ) {
-        File mkDir= new File( "c:\\GynTaSoft\\Tmp\\" );
-        if (USER != null && PASSWORD != null) {
-            try {
-                BufferedReader reader=new BufferedReader( new FileReader( "c:\\GynTaSoft\\Tmp\\tmp.txt" ));
-                USER = reader.readLine();
-                PASSWORD= reader.readLine();
-                System.out.println(USER + PASSWORD);
-            } catch (Exception exception) {
-                exception.printStackTrace();
-            }
-//            if else{
-//        USER = userText.getText();
-//        PASSWORD = passText.getText();
-//        panel.add( clik );
+        USER = userText.getText();
+        PASSWORD = passText.getText();
+        panel.add( clik );
 
-
-            if (!mkDir.exists()) {
-                System.out.println("creating directory: " + mkDir.getName());
-                boolean result = false;
-
-                try{
-                    mkDir.mkdir();
-                    result = true;
-                }
-                catch(SecurityException se){
-                    //handle it
-                }
-                if(result) {
-                    System.out.println("DIR created");
-                }
-            }
-        }
+//        File mkDir= new File( "c:\\GynTaSoft\\Tmp\\" );
+//        if (USER != null && PASSWORD != null) {
+//            try {
+//                BufferedReader reader=new BufferedReader( new FileReader( "c:\\GynTaSoft\\Tmp\\tmp.txt" ));
+//                USER = reader.readLine();
+//                PASSWORD= reader.readLine();
+//                System.out.println(USER + PASSWORD);
+//            } catch (Exception exception) {
+//                exception.printStackTrace();
+//            }
+////            if else{
+////        USER = userText.getText();
+////        PASSWORD = passText.getText();
+////        panel.add( clik );
+//
+//
+//            if (!mkDir.exists()) {
+//                System.out.println("creating directory: " + mkDir.getName());
+//                boolean result = false;
+//
+//                try{
+//                    mkDir.mkdir();
+//                    result = true;
+//                }
+//                catch(SecurityException se){
+//                    //handle it
+//                }
+//                if(result) {
+//                    System.out.println("DIR created");
+//                }
+//            }
+//        }
 //        if (USER != null && PASSWORD != null) {
 //          //  if (checkbox.getState()){
 //
@@ -129,6 +134,10 @@ public class AccesSQL implements ActionListener {
 //
 //            } catch (IOException ioException) {                ioException.printStackTrace();            }
 //        }
+
+
+        // criptare parole
+        //Base64
       }
     }
 
