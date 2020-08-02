@@ -4,6 +4,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class AccesSQL implements ActionListener {
 
@@ -22,6 +28,8 @@ public class AccesSQL implements ActionListener {
     private static Label clik;
     private static Checkbox checkbox;
     private static Label checkExplain;
+    private static Label checkExplain2;
+
     //private  static JFrame frame;
 
 
@@ -57,11 +65,11 @@ public class AccesSQL implements ActionListener {
         passText.setBounds( 170, 100, 165, 25 );
         panel.add( passText );
 
-        sqlLogButton = new Button( "logare" );
-        sqlLogButton.setBounds( 140, 170, 105, 25 );
+        sqlLogButton = new Button( "LOGARE" );
+        sqlLogButton.setBounds( 150, 170, 105, 25 );
         sqlLogButton.addActionListener( new AccesSQL() );
         //sqlLogButton.addActionListener( new SampleConectionController().clik() );
-        System.out.println(USER + PASSWORD);
+        System.out.println( USER + PASSWORD );
         panel.add( sqlLogButton );
 
         clik = new Label( "Daca ai pus datele corecte poti apasa START" );
@@ -72,72 +80,75 @@ public class AccesSQL implements ActionListener {
 //        checkbox.setBounds( 125, 140, 20, 20 );
 //        panel.add( checkbox );
 //
-//        checkExplain = new Label( "Retine datele" );
-//        checkExplain.setBounds( 145, 137, 105, 25 );
-//        panel.add( checkExplain );
+        checkExplain = new Label( "Dupa prima conectare datele au fost retinute" );
+        checkExplain2 = new Label("Apasa doar: ");
+
+        checkExplain.setBounds( 45, 137, 350, 25 );
+        checkExplain2.setBounds( 45, 167, 105, 25 );
+        panel.add( checkExplain );
+        panel.add( checkExplain2 );
+
 
         frame.setVisible( true );
     }
-
-
 
 
     // public void clearFields (){userText.remove();}
 
     @Override
     public void actionPerformed ( ActionEvent e ) {
-        USER = userText.getText();
-        PASSWORD = passText.getText();
-        panel.add( clik );
 
-//        File mkDir= new File( "c:\\GynTaSoft\\Tmp\\" );
-//        if (USER != null && PASSWORD != null) {
-//            try {
-//                BufferedReader reader=new BufferedReader( new FileReader( "c:\\GynTaSoft\\Tmp\\tmp.txt" ));
-//                USER = reader.readLine();
-//                PASSWORD= reader.readLine();
-//                System.out.println(USER + PASSWORD);
-//            } catch (Exception exception) {
-//                exception.printStackTrace();
-//            }
-////            if else{
-////        USER = userText.getText();
-////        PASSWORD = passText.getText();
-////        panel.add( clik );
-//
-//
-//            if (!mkDir.exists()) {
-//                System.out.println("creating directory: " + mkDir.getName());
-//                boolean result = false;
-//
-//                try{
-//                    mkDir.mkdir();
-//                    result = true;
-//                }
-//                catch(SecurityException se){
-//                    //handle it
-//                }
-//                if(result) {
-//                    System.out.println("DIR created");
-//                }
-//            }
-//        }
-//        if (USER != null && PASSWORD != null) {
-//          //  if (checkbox.getState()){
-//
-//            try {
-//                BufferedWriter writer = new BufferedWriter( new FileWriter( "c:\\GynTaSoft\\Tmp\\tmp.txt",false ) );
-//                writer.append( USER +"\n");
-//                writer.append( PASSWORD );
-//                writer.close();
-//               // writer.write( USER, PASSWORD );
-//
-//            } catch (IOException ioException) {                ioException.printStackTrace();            }
-//        }
+        if (USER != null && PASSWORD != null) {
+            USER = userText.getText();
+            PASSWORD = passText.getText();
+            panel.add( clik );}
+        else {
+            try {
+                USER = Files.readAllLines(Paths.get("C:\\GynTaSoft\\Tmp\\tmp.txt")).get(0);
+                PASSWORD = Files.readAllLines(Paths.get("C:\\GynTaSoft\\Tmp\\tmp.txt")).get(1);
+                System.out.println(USER+PASSWORD+"   vgh.h");
+                panel.add( clik );
+
+            } catch (IOException ioException) {                ioException.printStackTrace();            }
+        }
+        File mkDir = new File( "c:\\GynTaSoft\\Tmp\\" );
+        if (!mkDir.exists()) {
+            System.out.println( "creating directory: " + mkDir.getName() );
+            boolean result = false;
+
+            try {
+                mkDir.mkdir();
+                result = true;
+            } catch (SecurityException se) {
+                //handle it
+            }
+            if (result) {                System.out.println( "DIR created" );               }
+            if (!result) {                System.out.println("deja exista");    }
+
+            try {
+                BufferedWriter writer = new BufferedWriter( new FileWriter( "c:\\GynTaSoft\\Tmp\\tmp.txt", false ) );
+                writer.append( USER + "\n" );
+                writer.append( PASSWORD );
+                writer.close();
+                // writer.write( USER, PASSWORD );
+
+            } catch (IOException ioException) {                ioException.printStackTrace();            }
+
+        }
 
 
-        // criptare parole
-        //Base64
-      }
-    }
+
+
+
+            }
+                //  if (checkbox.getState()){
+
+
+            }
+
+
+            // criptare parole
+            //Base64
+
+
 

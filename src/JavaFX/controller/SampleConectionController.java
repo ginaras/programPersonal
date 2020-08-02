@@ -37,6 +37,7 @@ public class SampleConectionController implements Initializable {
          Class.forName("com.mysql.cj.jdbc.Driver"); //adaugata sa nu mai dea eroare la linia 14 din databaseConstants
         Connection connection = DriverManager.getConnection( DatabaseConstants.URL, AccesSQL.USER, AccesSQL.PASSWORD);
         createDtabase( connection );
+        System.out.println(AccesSQL.USER + AccesSQL.PASSWORD+"in SCC");
        // click();
 
 

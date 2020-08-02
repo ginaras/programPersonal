@@ -11,7 +11,7 @@ public class DatabaseConstants {
 //    public static  String PASSWORD;// = "poiulkjh123";
     public static final String CREATE_DATABASE = "CREATE DATABASE IF NOT EXISTS cursuri";
     //public static final String DATABASE = "cursuri";
-    public static final String URL = String.format("jdbc:mysql://localhost:3306/%s?useLegacyDateTimeCode=false&serverTimezone=GMT", "cursuri");
+    public static String URL = String.format("jdbc:mysql://localhost:3306/%s?useLegacyDateTimeCode=false&serverTimezone=GMT", "cursuri");
 
     public static final String UserWeb= "imobiliz_sorin";
     public static final String PASSWORDWEB = "PoiuLkjh123";
