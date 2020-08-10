@@ -32,32 +32,52 @@ import static javaPac.DatabaseConstants.CREATE_TABLE;
 import static javaPac.DatabaseConstants.USE_TABLE;
 
 public class Stage1Controller<personData, personDataApp> implements Initializable {
-    @FXML    private MenuItem createTable;
-    @FXML    private MenuItem openTable;
+    @FXML
+    private MenuItem createTable;
+    @FXML
+    private MenuItem openTable;
     //definire tabel view cu date din baza de date
-    @FXML    private TableView<DatabaseConstants> tableViewBazaDate;
-    @FXML    private TableColumn<DatabaseConstants, String> marcaTableView;
-    @FXML    private TableColumn<DatabaseConstants, String> cnpTableView;
-    @FXML    private TableColumn<DatabaseConstants, String> npTableView;
-    @FXML    private TableColumn<DatabaseConstants, LocalDate> dataNasterii;
-    @FXML    private TableColumn<DatabaseConstants, LocalDate> dataAngajarii;
-    @FXML    private TableColumn<DatabaseConstants, String> vechimeaTableView;
-    @FXML    private TableColumn<DatabaseConstants, String> salBrutTableView ;
-    @FXML    private TableColumn<DatabaseConstants, String> cassTableView;
-    @FXML    private TableColumn<DatabaseConstants, String> casTableView;
-    @FXML    private TableColumn<DatabaseConstants, String> impozitTableView;
-    @FXML    private TableColumn<DatabaseConstants, String> salNetTableView;
-    @FXML    private Label plecatLabel;
-    @FXML    private Label existNr;
-    @FXML    private Label totalSBLabel;
-    @FXML    private Label totalCASSLabel;
-    @FXML    private Label totalCASLabel;
-    @FXML    private Label totalImpLabel;
-    @FXML    private Label totalSNLabel;
+    @FXML
+    private TableView<DatabaseConstants> tableViewBazaDate;
+    @FXML
+    private TableColumn<DatabaseConstants, String> marcaTableView;
+    @FXML
+    private TableColumn<DatabaseConstants, String> cnpTableView;
+    @FXML
+    private TableColumn<DatabaseConstants, String> npTableView;
+    @FXML
+    private TableColumn<DatabaseConstants, LocalDate> dataNasterii;
+    @FXML
+    private TableColumn<DatabaseConstants, LocalDate> dataAngajarii;
+    @FXML
+    private TableColumn<DatabaseConstants, String> vechimeaTableView;
+    @FXML
+    private TableColumn<DatabaseConstants, String> salBrutTableView;
+    @FXML
+    private TableColumn<DatabaseConstants, String> cassTableView;
+    @FXML
+    private TableColumn<DatabaseConstants, String> casTableView;
+    @FXML
+    private TableColumn<DatabaseConstants, String> impozitTableView;
+    @FXML
+    private TableColumn<DatabaseConstants, String> salNetTableView;
+    @FXML
+    private Label plecatLabel;
+    @FXML
+    private Label existNr;
+    @FXML
+    private Label totalSBLabel;
+    @FXML
+    private Label totalCASSLabel;
+    @FXML
+    private Label totalCASLabel;
+    @FXML
+    private Label totalImpLabel;
+    @FXML
+    private Label totalSNLabel;
 
     private URL location;
     private ResourceBundle resources;
-
 
 
     public ObservableList<DatabaseConstants> personalData;//declarare pt listview
@@ -66,7 +86,7 @@ public class Stage1Controller<personData, personDataApp> implements Initializabl
     Statement stm = connection.createStatement();
     ResultSet rs1 = stm.executeQuery( "SELECT * FROM personal WHERE stare = 'angajat' " );
 
-   //create Table+
+    //create Table+
     public Connection getConectionNew () throws SQLException {
         Connection connection = DriverManager.getConnection( DatabaseConstants.URL, AccesSQL.USER, AccesSQL.PASSWORD );
         Statement stm = connection.createStatement();
@@ -76,7 +96,7 @@ public class Stage1Controller<personData, personDataApp> implements Initializabl
     }
 
 
-        //+create Table
+    //+create Table
     public void createTable ( Connection connection ) throws SQLException {
         Statement stm = connection.createStatement();
         int update = stm.executeUpdate( CREATE_TABLE );
@@ -110,11 +130,12 @@ public class Stage1Controller<personData, personDataApp> implements Initializabl
         window2.setScene( tabeleViewScene2 );
         window2.show();
     }
-    public void goToStage3Deleted (ActionEvent actionEvent) throws IOException {
-        Parent tableView3 =FXMLLoader.load( getClass().getClassLoader().getResource( "JavaFX/Stage3Deleted.fxml" ) );
+
+    public void goToStage3Deleted ( ActionEvent actionEvent ) throws IOException {
+        Parent tableView3 = FXMLLoader.load( getClass().getClassLoader().getResource( "JavaFX/Stage3Deleted.fxml" ) );
         Scene tableViewScene3 = new Scene( tableView3 );
 
-        Stage window3 = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Stage window3 = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         window3.setScene( tableViewScene3 );
         window3.show();
     }
@@ -122,18 +143,22 @@ public class Stage1Controller<personData, personDataApp> implements Initializabl
     public void quitButton ( ActionEvent actionEvent ) {
         System.exit( 0 );
     }
-//deschidere   Folder
-    public void openFolder (ActionEvent actionEvent){
-        Desktop desktop= null;
+
+    //deschidere   Folder
+    public void openFolder ( ActionEvent actionEvent ) {
+        Desktop desktop = null;
         try {
-            desktop.getDesktop().open( new File( "c:\\GynTaSoft\\Salarii" ) ); ;
+            desktop.getDesktop().open( new File( "c:\\GynTaSoft\\Salarii" ) );
+            ;
         } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
-    public void despre(){Despre.Text();}
 
+    public void despre () {
+        Despre.Text();
+    }
 
 
     @Override
@@ -171,7 +196,9 @@ public class Stage1Controller<personData, personDataApp> implements Initializabl
                 existNr.setText( "  Avem  " + String.valueOf( count ) + " angajati" );
             }
             tableViewBazaDate.setItems( personalData );
-        } catch (SQLException throwables) {            throwables.printStackTrace();        }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
 
         try {
             Statement stm = connection.createStatement();
@@ -181,7 +208,9 @@ public class Stage1Controller<personData, personDataApp> implements Initializabl
                 int salB = ++salBrut - 1;
                 System.out.println( "Total  SB=    " + salB );
                 totalSBLabel.setText( String.valueOf( salB ) );
-            }        } catch (SQLException throwables) {        }
+            }
+        } catch (SQLException throwables) {
+        }
 
         try {
             Statement stm = connection.createStatement();
@@ -191,7 +220,10 @@ public class Stage1Controller<personData, personDataApp> implements Initializabl
                 int casTotal = ++casT - 1;
                 System.out.println( "Total cas=    " + casTotal );
                 totalCASLabel.setText( String.valueOf( casTotal ) );
-            }} catch (SQLException e) {            e.printStackTrace();        }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         try {
             Statement stm = connection.createStatement();
@@ -201,7 +233,10 @@ public class Stage1Controller<personData, personDataApp> implements Initializabl
                 int cassTotal = ++cassT - 1;
                 System.out.println( "Total cass=    " + cassTotal );
                 totalCASSLabel.setText( String.valueOf( cassTotal ) );
-            }} catch (SQLException throwables) {            throwables.printStackTrace();        }
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
 
         try {
             Statement stm = connection.createStatement();
@@ -211,7 +246,10 @@ public class Stage1Controller<personData, personDataApp> implements Initializabl
                 int ipozitTotal = ++ipozit - 1;
                 System.out.println( "Total impozit= " + ipozitTotal );
                 totalImpLabel.setText( String.valueOf( ipozitTotal ) );
-            }} catch (SQLException throwables) {            throwables.printStackTrace();        }
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
 
         try {
             Statement stm = connection.createStatement();
@@ -220,11 +258,14 @@ public class Stage1Controller<personData, personDataApp> implements Initializabl
                 int salNet = totalSalNet.getInt( "salNet" );
                 int salNetTotal = ++salNet - 1;
                 System.out.println( "Total SN=     " + salNetTotal );
-                totalSNLabel.setText( String.valueOf( salNetTotal ) );            }
-        } catch (SQLException throwables) {           throwables.printStackTrace();        }
+                totalSNLabel.setText( String.valueOf( salNetTotal ) );
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
-        public void refreshButton ( ActionEvent actionEvent ) throws IOException, SQLException {
+    public void refreshButton ( ActionEvent actionEvent ) throws IOException, SQLException {
         new Stage1Controller();
     }
 
@@ -245,12 +286,12 @@ public class Stage1Controller<personData, personDataApp> implements Initializabl
 
             LocalDateTime date = LocalDateTime.now();
             String nume = date.toString();
-            String replaceNume= nume.replace( ":","-" );
-            String replaceNume2 = replaceNume.replace("T"," ora ");
-            System.out.println(replaceNume );
+            String replaceNume = nume.replace( ":", "-" );
+            String replaceNume2 = replaceNume.replace( "T", " ora " );
+            System.out.println( replaceNume );
 
 
-            BufferedWriter writer0 = new BufferedWriter( new FileWriter( "c:\\GynTaSoft\\Salarii\\TabelPersonalActiv-" + replaceNume2+ ".csv", false ) );
+            BufferedWriter writer0 = new BufferedWriter( new FileWriter( "c:\\GynTaSoft\\Salarii\\TabelPersonalActiv-" + replaceNume2 + ".csv", false ) );
             writer0.append( "marca, cnp ,nume si prenume, Salariu brut, Vechimea, CASS, CAS, Impozit, Salariu net, data nasterii, data angajarii" );
             writer0.close();
 //Parcurgerea BD si extragerea datelor iterate through the java resultset
@@ -259,8 +300,8 @@ public class Stage1Controller<personData, personDataApp> implements Initializabl
                 String cnpTableView = rs.getString( "cnp" );
                 String npTableView = rs.getString( "nume" );
                 String salBrutTableView = rs.getString( "salariuBrut" );
-                String dataAngajarii = rs.getString("dataAngajarii");
-                String dataNasterii = rs.getString("dataNasterii");
+                String dataAngajarii = rs.getString( "dataAngajarii" );
+                String dataNasterii = rs.getString( "dataNasterii" );
                 Integer vechimeaTableView = rs.getInt( "vechimea" );
                 Integer cassTableView = rs.getInt( "cass" );
                 Integer casTableView = rs.getInt( "cas" );
@@ -270,9 +311,8 @@ public class Stage1Controller<personData, personDataApp> implements Initializabl
                 //  System.out.format( "%s, %s, %s, %s, %s, %s, %s, %s,%s\n", marcaTableView, cnpTableView, npTableView, vechimeaTableView, salBrutTableView, cassTableView, casTableView, impozitTableView, salNetTableView );
 
 
-
 //print - adaugarea datelor in fisier
-                String datele = (Integer) marcaTableViewPrint + "," + (String) cnpTableView + "," + (String) npTableView + "," + (Integer) vechimeaTableView + "," + (String) salBrutTableView + "," + (Integer) cassTableView + "," + (Integer) casTableView + "," + (Integer) impozitTableView + "," + (Integer) salNetTableView+","+dataNasterii+","+dataAngajarii;
+                String datele = (Integer) marcaTableViewPrint + "," + (String) cnpTableView + "," + (String) npTableView + "," + (Integer) vechimeaTableView + "," + (String) salBrutTableView + "," + (Integer) cassTableView + "," + (Integer) casTableView + "," + (Integer) impozitTableView + "," + (Integer) salNetTableView + "," + dataNasterii + "," + dataAngajarii;
                 BufferedWriter writer = new BufferedWriter( new FileWriter( "c:\\GynTaSoft\\Salarii\\TabelPersonalActiv-" + replaceNume2 + ".csv", true ) );
                 writer.append( " \n" );
                 writer.append( datele );
@@ -284,31 +324,34 @@ public class Stage1Controller<personData, personDataApp> implements Initializabl
         }
     }
 
-    public void despre1(){Despre.Text();}
+    public void despre1 () {
+        Despre.Text();
+    }
 
-    public void deletePersonTableAndSQL (ActionEvent actionEvent){
+    public void deletePersonTableAndSQL ( ActionEvent actionEvent ) {
         deletePersFromTable();
         return;
     }
-    public void deletePersFromTable(){
+
+    public void deletePersFromTable () {
         //delete person
         try (Statement statement = connection.createStatement()) {
 
-            ObservableList <DatabaseConstants> selectedRows, allPeople;
-            allPeople=tableViewBazaDate.getItems();
-            selectedRows =tableViewBazaDate.getSelectionModel().getSelectedItems();
-            for (DatabaseConstants person : selectedRows){
-                String marcaSelectata = String.format(person.getMarca().toString()); // Asa se extrage o data dintr-un Observable list
+            ObservableList<DatabaseConstants> selectedRows, allPeople;
+            allPeople = tableViewBazaDate.getItems();
+            selectedRows = tableViewBazaDate.getSelectionModel().getSelectedItems();
+            for (DatabaseConstants person : selectedRows) {
+                String marcaSelectata = String.format( person.getMarca().toString() ); // Asa se extrage o data dintr-un Observable list
                 String numeSelectat = String.format( person.getNume().toString() );
                 allPeople.remove( person );
-                System.out.println(marcaSelectata);
-                int changeStare = statement.executeUpdate( "UPDATE personal SET stare = 'plecat' WHERE marca='"+marcaSelectata+"'" );
-                plecatLabel.setText( "Marca " +marcaSelectata+" cu numele:  "+numeSelectat+"  a plecat" );
+                System.out.println( marcaSelectata );
+                int changeStare = statement.executeUpdate( "UPDATE personal SET stare = 'plecat' WHERE marca='" + marcaSelectata + "'" );
+                plecatLabel.setText( "Marca " + marcaSelectata + " cu numele:  " + numeSelectat + "  a plecat" );
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        }
+    }
 
 
 }

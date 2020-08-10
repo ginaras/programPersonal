@@ -32,28 +32,49 @@ import static javaPac.DatabaseConstants.CREATE_TABLE;
 import static javaPac.DatabaseConstants.USE_TABLE;
 
 public class Stage3DeletedController<personData, personDataApp> implements Initializable {
-    @FXML    private MenuItem createTable;
-    @FXML    private MenuItem openTable;
+    @FXML
+    private MenuItem createTable;
+    @FXML
+    private MenuItem openTable;
     //definire tabel view cu date din baza de date
-    @FXML    private TableView<DatabaseConstants> tableViewBazaDate;
-    @FXML    private TableColumn<DatabaseConstants, String> marcaTableView;
-    @FXML    private TableColumn<DatabaseConstants, String> cnpTableView;
-    @FXML    private TableColumn<DatabaseConstants, String> npTableView;
-    @FXML    private TableColumn<DatabaseConstants, LocalDate> dataNasterii;
-    @FXML    private TableColumn<DatabaseConstants, LocalDate> dataAngajarii;
-    @FXML    private TableColumn<DatabaseConstants, String> vechimeaTableView;
-    @FXML    private TableColumn<DatabaseConstants, String> salBrutTableView ;
-    @FXML    private TableColumn<DatabaseConstants, String> cassTableView;
-    @FXML    private TableColumn<DatabaseConstants, String> casTableView;
-    @FXML    private TableColumn<DatabaseConstants, String> impozitTableView;
-    @FXML    private TableColumn<DatabaseConstants, String> salNetTableView;
-    @FXML    private Label plecatLabel;
-    @FXML    private Label deletedSalariati;
-    @FXML    private Label totalSBLabel;
-    @FXML    private Label totalCASSLabel;
-    @FXML    private Label totalCASLabel;
-    @FXML    private Label totalImpLabel;
-    @FXML    private Label totalSNLabel;
+    @FXML
+    private TableView<DatabaseConstants> tableViewBazaDate;
+    @FXML
+    private TableColumn<DatabaseConstants, String> marcaTableView;
+    @FXML
+    private TableColumn<DatabaseConstants, String> cnpTableView;
+    @FXML
+    private TableColumn<DatabaseConstants, String> npTableView;
+    @FXML
+    private TableColumn<DatabaseConstants, LocalDate> dataNasterii;
+    @FXML
+    private TableColumn<DatabaseConstants, LocalDate> dataAngajarii;
+    @FXML
+    private TableColumn<DatabaseConstants, String> vechimeaTableView;
+    @FXML
+    private TableColumn<DatabaseConstants, String> salBrutTableView;
+    @FXML
+    private TableColumn<DatabaseConstants, String> cassTableView;
+    @FXML
+    private TableColumn<DatabaseConstants, String> casTableView;
+    @FXML
+    private TableColumn<DatabaseConstants, String> impozitTableView;
+    @FXML
+    private TableColumn<DatabaseConstants, String> salNetTableView;
+    @FXML
+    private Label plecatLabel;
+    @FXML
+    private Label deletedSalariati;
+    @FXML
+    private Label totalSBLabel;
+    @FXML
+    private Label totalCASSLabel;
+    @FXML
+    private Label totalCASLabel;
+    @FXML
+    private Label totalImpLabel;
+    @FXML
+    private Label totalSNLabel;
 
 
     public ObservableList<DatabaseConstants> personalData;//declarare pt listview
@@ -64,8 +85,6 @@ public class Stage3DeletedController<personData, personDataApp> implements Initi
 
     private URL location;
     private ResourceBundle resources;
-
-   
 
 
     //create Table+
@@ -78,7 +97,7 @@ public class Stage3DeletedController<personData, personDataApp> implements Initi
     }
 
 
-        //+create Table
+    //+create Table
     public void createTable ( Connection connection ) throws SQLException {
         Statement stm = connection.createStatement();
         int update = stm.executeUpdate( CREATE_TABLE );
@@ -103,11 +122,12 @@ public class Stage3DeletedController<personData, personDataApp> implements Initi
             System.out.println( "nu seschide tabela personal........................" );
         }
     }
+
     public void goToStage1 ( ActionEvent actionEvent ) throws IOException {
-        Parent tableView = FXMLLoader.load( getClass().getClassLoader().getResource( "JavaFX/Stage1.fxml" ));
+        Parent tableView = FXMLLoader.load( getClass().getClassLoader().getResource( "JavaFX/Stage1.fxml" ) );
         Scene tabeleViewScene = new Scene( tableView );
         //This line gets the stage inforation
-        Stage window =  (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         window.setScene( tabeleViewScene );
         window.show();
     }
@@ -120,30 +140,33 @@ public class Stage3DeletedController<personData, personDataApp> implements Initi
         window2.setScene( tabeleViewScene2 );
         window2.show();
     }
-    public void baackPersFromTable(){
+
+    public void baackPersFromTable () {
         //readucere persoana ca angajata
         try (Statement statement = connection.createStatement()) {
 
-            ObservableList <DatabaseConstants> selectedRows, allPeople;
-            allPeople=tableViewBazaDate.getItems();
-            selectedRows =tableViewBazaDate.getSelectionModel().getSelectedItems();
-            for (DatabaseConstants person : selectedRows){
-                String marcaSelectata = String.format(person.getMarca().toString()); // Asa se extrage o data dintr-un Observable list
+            ObservableList<DatabaseConstants> selectedRows, allPeople;
+            allPeople = tableViewBazaDate.getItems();
+            selectedRows = tableViewBazaDate.getSelectionModel().getSelectedItems();
+            for (DatabaseConstants person : selectedRows) {
+                String marcaSelectata = String.format( person.getMarca().toString() ); // Asa se extrage o data dintr-un Observable list
                 String numeSelectat = String.format( person.getNume().toString() );
                 allPeople.remove( person );
-                System.out.println(marcaSelectata);
-                int changeStare = statement.executeUpdate( "UPDATE personal SET stare = 'angajat' WHERE marca='"+marcaSelectata+"'" );
-                plecatLabel.setText( "Marca " +marcaSelectata+" cu numele:  "+numeSelectat+"  a fost readusa" );
+                System.out.println( marcaSelectata );
+                int changeStare = statement.executeUpdate( "UPDATE personal SET stare = 'angajat' WHERE marca='" + marcaSelectata + "'" );
+                plecatLabel.setText( "Marca " + marcaSelectata + " cu numele:  " + numeSelectat + "  a fost readusa" );
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
     //deschidere   Folder
-    public void openFolder (ActionEvent actionEvent){
-        Desktop desktop= null;
+    public void openFolder ( ActionEvent actionEvent ) {
+        Desktop desktop = null;
         try {
-            desktop.getDesktop().open( new File( "c:\\GynTaSoft\\Salarii" ) ); ;
+            desktop.getDesktop().open( new File( "c:\\GynTaSoft\\Salarii" ) );
+            ;
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -152,7 +175,10 @@ public class Stage3DeletedController<personData, personDataApp> implements Initi
     public void quitButton ( ActionEvent actionEvent ) {
         System.exit( 0 );
     }
-    public void despre(){Despre.Text();}
+
+    public void despre () {
+        Despre.Text();
+    }
 
     @Override
     public void initialize ( URL location, ResourceBundle resources ) {
@@ -172,23 +198,25 @@ public class Stage3DeletedController<personData, personDataApp> implements Initi
         // cassTableView.setCellValueFactory( new PropertyValueFactory<>( "cass" ) );
 
         personalData = FXCollections.observableArrayList();
-            try {
-                int nrSalariati=0;
-                while (rs1.next()){
-                    personalData.addAll(new DatabaseConstants( rs1.getInt( "marca" ),
-                            rs1.getString("cnp"),
-                            rs1.getString( "nume" ),
-                            rs1.getInt( "vechimea" ),
-                            rs1.getString( "salariuBrut" ),
-                            rs1.getInt( "cass" ),
-                            rs1.getInt( "cas" ),
-                            rs1.getInt( "impozit" ),
-                            rs1.getInt( "salNet" )));
-                    nrSalariati++;
-                    deletedSalariati.setText( "Au plecat " + nrSalariati + " salariati  din intreprindere" );
-                 }
-                tableViewBazaDate.setItems( personalData );
-            } catch (SQLException throwables) {                throwables.printStackTrace();            }
+        try {
+            int nrSalariati = 0;
+            while (rs1.next()) {
+                personalData.addAll( new DatabaseConstants( rs1.getInt( "marca" ),
+                        rs1.getString( "cnp" ),
+                        rs1.getString( "nume" ),
+                        rs1.getInt( "vechimea" ),
+                        rs1.getString( "salariuBrut" ),
+                        rs1.getInt( "cass" ),
+                        rs1.getInt( "cas" ),
+                        rs1.getInt( "impozit" ),
+                        rs1.getInt( "salNet" ) ) );
+                nrSalariati++;
+                deletedSalariati.setText( "Au plecat " + nrSalariati + " salariati  din intreprindere" );
+            }
+            tableViewBazaDate.setItems( personalData );
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         try {
             Statement stm = connection.createStatement();
             ResultSet total = stm.executeQuery( "SELECT SUM(salariuBrut) AS salariuBrut FROM personal WHERE stare = 'plecat' " );
@@ -197,7 +225,9 @@ public class Stage3DeletedController<personData, personDataApp> implements Initi
                 int salB = ++salBrut - 1;
                 System.out.println( "Total  SB=    " + salB );
                 totalSBLabel.setText( String.valueOf( salB ) );
-            }        } catch (SQLException throwables) {        }
+            }
+        } catch (SQLException throwables) {
+        }
 
         try {
             Statement stm = connection.createStatement();
@@ -207,7 +237,10 @@ public class Stage3DeletedController<personData, personDataApp> implements Initi
                 int casTotal = ++casT - 1;
                 System.out.println( "Total cas=    " + casTotal );
                 totalCASLabel.setText( String.valueOf( casTotal ) );
-            }} catch (SQLException e) {            e.printStackTrace();        }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         try {
             Statement stm = connection.createStatement();
@@ -217,7 +250,10 @@ public class Stage3DeletedController<personData, personDataApp> implements Initi
                 int cassTotal = ++cassT - 1;
                 System.out.println( "Total cass=    " + cassTotal );
                 totalCASSLabel.setText( String.valueOf( cassTotal ) );
-            }} catch (SQLException throwables) {            throwables.printStackTrace();        }
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
 
         try {
             Statement stm = connection.createStatement();
@@ -227,7 +263,10 @@ public class Stage3DeletedController<personData, personDataApp> implements Initi
                 int ipozitTotal = ++ipozit - 1;
                 System.out.println( "Total impozit= " + ipozitTotal );
                 totalImpLabel.setText( String.valueOf( ipozitTotal ) );
-            }} catch (SQLException throwables) {            throwables.printStackTrace();        }
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
 
         try {
             Statement stm = connection.createStatement();
@@ -236,10 +275,12 @@ public class Stage3DeletedController<personData, personDataApp> implements Initi
                 int salNet = totalSalNet.getInt( "salNet" );
                 int salNetTotal = ++salNet - 1;
                 System.out.println( "Total SN=     " + salNetTotal );
-                totalSNLabel.setText( String.valueOf( salNetTotal ) );            }
-        } catch (SQLException throwables) {           throwables.printStackTrace();        }
+                totalSNLabel.setText( String.valueOf( salNetTotal ) );
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
-
 
 
     public void refreshButton ( ActionEvent actionEvent ) throws IOException, SQLException {
@@ -260,8 +301,8 @@ public class Stage3DeletedController<personData, personDataApp> implements Initi
 //Print - Crearea si prima linie a fisierilui de raport
             LocalDateTime date = LocalDateTime.now();
             String nume = date.toString();
-            String replaceNume= nume.replace( ":","-" );
-            String replaceNume2 = replaceNume.replace("T"," ora ");
+            String replaceNume = nume.replace( ":", "-" );
+            String replaceNume2 = replaceNume.replace( "T", " ora " );
             BufferedWriter writer0 = new BufferedWriter( new FileWriter( "c:\\GynTaSoft\\Salarii\\TabelPersoanePlecateDinFirma-" + replaceNume2 + ".csv", false ) );
             writer0.append( "marca, cnp ,nume si prenume, Vechimea, Salariu brut, CASS, CAS, Impozit, Salariu net" );
             writer0.close();
@@ -292,8 +333,6 @@ public class Stage3DeletedController<personData, personDataApp> implements Initi
             ioException.printStackTrace();
         }
     }
-
-
 
 
 }

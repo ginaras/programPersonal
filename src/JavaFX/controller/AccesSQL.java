@@ -81,7 +81,7 @@ public class AccesSQL implements ActionListener {
 //        panel.add( checkbox );
 //
         checkExplain = new Label( "Dupa prima conectare datele au fost retinute" );
-        checkExplain2 = new Label("Apasa doar: ");
+        checkExplain2 = new Label( "Apasa doar: " );
 
         checkExplain.setBounds( 45, 137, 350, 25 );
         checkExplain2.setBounds( 45, 167, 105, 25 );
@@ -101,17 +101,19 @@ public class AccesSQL implements ActionListener {
         if (USER != null && PASSWORD != null) {
             USER = userText.getText();
             PASSWORD = passText.getText();
-            panel.add( clik );}
-        else {
+            panel.add( clik );
+        } else {
             try {
-                USER = Files.readAllLines(Paths.get("C:\\GynTaSoft\\Tmp\\tmp.txt")).get(0);
-                PASSWORD = Files.readAllLines(Paths.get("C:\\GynTaSoft\\Tmp\\tmp.txt")).get(1);
-                System.out.println(USER+PASSWORD+"   vgh.h");
+                USER = Files.readAllLines( Paths.get( "C:\\GynTaSoft2\\Tmp\\tmp" ) ).get( 0 );
+                PASSWORD = Files.readAllLines( Paths.get( "C:\\GynTaSoft2\\Tmp\\tmp" ) ).get( 1 );
+                System.out.println( USER + PASSWORD + "   vgh.h" );
                 panel.add( clik );
 
-            } catch (IOException ioException) {                ioException.printStackTrace();            }
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
         }
-        File mkDir = new File( "c:\\GynTaSoft\\Tmp\\" );
+        File mkDir = new File( "c:\\GynTaSoft2\\Tmp\\" );
         if (!mkDir.exists()) {
             System.out.println( "creating directory: " + mkDir.getName() );
             boolean result = false;
@@ -122,8 +124,12 @@ public class AccesSQL implements ActionListener {
             } catch (SecurityException se) {
                 //handle it
             }
-            if (result) {                System.out.println( "DIR created" );               }
-            if (!result) {                System.out.println("deja exista");    }
+            if (result) {
+                System.out.println( "DIR created" );
+            }
+            if (!result) {
+                System.out.println( "deja exista" );
+            }
 
             try {
                 BufferedWriter writer = new BufferedWriter( new FileWriter( "c:\\GynTaSoft\\Tmp\\tmp.txt", false ) );
@@ -132,23 +138,22 @@ public class AccesSQL implements ActionListener {
                 writer.close();
                 // writer.write( USER, PASSWORD );
 
-            } catch (IOException ioException) {                ioException.printStackTrace();            }
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
 
         }
 
 
+    }
+    //  if (checkbox.getState()){
 
 
-
-            }
-                //  if (checkbox.getState()){
+}
 
 
-            }
-
-
-            // criptare parole
-            //Base64
+// criptare parole
+//Base64
 
 
 
